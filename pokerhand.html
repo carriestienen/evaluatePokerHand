@@ -22,7 +22,6 @@
 
 		var hand = document.getElementById("hand").value;
 
-		//document.getElementById("result").innerHTML = hand;
 
 		hand = hand.split(" ");
 
@@ -32,7 +31,6 @@
 			var newHand = [];
 			var suits = [];
 			var ranks = [];
-			//hand.forEach(function(card) {
 			for (i = 0; i < hand.length; i++) {
 				var card = hand[i];
 				cardRank = card.substr(0, (card.length - 1));
@@ -80,7 +78,6 @@
 	}
 
 	function containsStraight(x) {
-		debugger;
 
 		possibleStraights = ["23456", "34567", "45678", "56789", "106789", "10789J", "1089JQ", "109JKQ", "10AJKQ"];
 
@@ -101,9 +98,7 @@
 
 	function containsFourOfAKind(x) {
 		x.sort();
-		//for (i = 0; i < 4; i++) {
 
-		//debugger;
 		if (x[0] == x[1] && x[1] == x[2] && x[2] == x[3]) {
 			return true;
 		} else if (x[1] == x[2] && x[2] == x[3] && x[3] == x[4]) {
