@@ -1,5 +1,5 @@
 <form id="form">
-  Poker Hand: <input type="text" name="hand"><br>
+  Poker Hand: <input type="text" id="hand"><br>
 </form>
 
 <button onclick="identifyRank()">Evaluate Hand</button>
@@ -14,19 +14,21 @@
 
 		document.getElementById("result").innerHTML = "testing";
 
-		var hand = document.getElementById("hand");
+		var hand = document.getElementById("hand").value;
 
 		//document.getElementById("result").innerHTML = hand;
 
-		var hand = hand.split(" ");
+		hand = hand.split(" ");
 
 		if (hand.length != 5) {
 			document.getElementById("result").innerHTML = "Incorrect number of cards."
 		} else { 
-			var newHand;
-			var suits;
-			var ranks;
-			forEach(card in hand) {
+			var newHand = [];
+			var suits = [];
+			var ranks = [];
+			//hand.forEach(function(card) {
+			for (i = 0; i < hand.length; i++) {
+				var card = hand[i];
 				cardRank = card.substr(0, (card.length - 1));
 				cardSuit = card.charAt(card.length - 1);
 				newHand.push([cardRank, cardSuit]);
@@ -85,9 +87,10 @@
 		x.sort();
 		//for (i = 0; i < 4; i++) {
 
-		if (x[0] == x[1] == x[2] == x[3]){
+		//debugger;
+		if (x[0] == x[1] && x[1] == x[2] && x[2] == x[3]) {
 			return true;
-		} else if (x[1] == x[2] == x[3] == x[4]) {
+		} else if (x[1] == x[2] && x[2] == x[3] && x[3] == x[4]) {
 			return true;
 		} else {
 			return false;
