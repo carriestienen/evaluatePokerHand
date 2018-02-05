@@ -1,0 +1,148 @@
+<form id="form">
+  Poker Hand: <input type="text" name="hand"><br>
+</form>
+
+<button onclick="identifyRank()">Evaluate Hand</button>
+
+<p id="result"></p>
+
+<script>
+	function identifyRank() {
+
+		//var suits = ["d", "h", "s", "c"];
+		//var ranks = ["A", "K", "Q", "J", "10", "9", "8", "7", "6", "5", "4", "3", "2"];
+
+		document.getElementById("result").innerHTML = "testing";
+
+		var hand = document.getElementById("hand");
+
+		//document.getElementById("result").innerHTML = hand;
+
+		var hand = hand.split(" ");
+
+		if (hand.length != 5) {
+			document.getElementById("result").innerHTML = "Incorrect number of cards."
+		} else { 
+			var newHand;
+			var suits;
+			var ranks;
+			forEach(card in hand) {
+				cardRank = card.substr(0, (card.length - 1));
+				cardSuit = card.charAt(card.length - 1);
+				newHand.push([cardRank, cardSuit]);
+				ranks.push(cardRank);
+				suits.push(cardSuit);
+			}
+
+			if (ranks.includes("A") && ranks.includes("K") && ranks.includes("Q") && ranks.includes("J") && ranks.includes("10") && containsFlush(suits)) {
+				document.getElementById("result").innerHTML = "Royal Flush";
+			} else if (containsFlush(suits) && containsStraight(ranks)) {
+				document.getElementById("result").innerHTML = "Straight Flush";
+			} else if (containsFourOfAKind(ranks)){
+				document.getElementById("result").innerHTML = "Four of a Kind";
+			} else if (containsFullHouse(ranks)) {
+				document.getElementById("result").innerHTML = "Full House";
+			} else if (containsFlush(suits)) {
+				document.getElementById("result").innerHTML = "Flush";
+			} else if (containsStraight(ranks)) {
+				document.getElementById("result").innerHTML = "Straight";
+			} else if (containsThreeOfAKind(ranks)) {
+				document.getElementById("result").innerHTML = "Three of a Kind";
+			} else if (containsTwoPair(ranks)){
+				document.getElementById("result").innerHTML = "Two Pair";
+			} else if (containsPair(ranks)) {
+				document.getElementById("result").innerHTML = "Pair";
+			} else {
+				document.getElementById("result").innerHTML = "High Card";
+			}
+
+
+		} 
+
+	}
+
+	function containsFlush(x) {
+		if (x[0] == x[1] == x[2] == x[3] == x[4]){
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+
+	function containsStraight(x) {
+		possibleStraights = (["2", "3", "4", "5", "6"], ["3", "4", "5", "6", "7"], ["4", "5", "6", "7", "8"], ["5", "6", "7", "8", "9"], ["10", "6", "7", "8", "9"], ["10", "7", "8", "9", "J"], ["10", "8", "9", "J", "Q"], ["10", "9", "J", "K", "Q"], ["10", "A", "J", "K", "Q"]);
+
+		x.sort();
+		if (possibleStraights.includes(x)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	function containsFourOfAKind(x) {
+		x.sort();
+		//for (i = 0; i < 4; i++) {
+
+		if (x[0] == x[1] == x[2] == x[3]){
+			return true;
+		} else if (x[1] == x[2] == x[3] == x[4]) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	function containsFullHouse(x) {
+		x.sort();
+
+		if ((x[0] == x[1] == x[2]) && (x[3] == x[4])) {
+			return true;
+		} else if ((x[0] == x[1]) && (x[2] == x[3] == x[4])) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	function containsThreeOfAKind(x){
+		x.sort();
+
+		if (x[0] == x[1] == x[2]){
+			return true;
+		} else if (x[2] == x[3] == x[4]) {
+			return true;
+		} else if (x[2] == x[3] == x[1]) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	function containsTwoPair(x){
+		x.sort()
+
+		if ((x[0] == x[1]) && (x[2] == x[3])) {
+			return true;
+		} else if ((x[0] == x[1]) && (x[3] == x[4])){
+			return true;
+		} else if ((x[1] == x[2]) && (x[3] == x[4])){
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	function containsPair(x){
+		x.sort();
+
+		if ((x[0] == x[1]) || (x[1] == x[2]) || (x[2] == x[3]) || (x[3] == x[4])){
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+</script>
+
