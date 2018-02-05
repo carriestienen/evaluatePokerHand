@@ -1,3 +1,9 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+
 <form id="form">
   Poker Hand: <input type="text" id="hand"><br>
 </form>
@@ -74,10 +80,19 @@
 	}
 
 	function containsStraight(x) {
-		possibleStraights = (["2", "3", "4", "5", "6"], ["3", "4", "5", "6", "7"], ["4", "5", "6", "7", "8"], ["5", "6", "7", "8", "9"], ["10", "6", "7", "8", "9"], ["10", "7", "8", "9", "J"], ["10", "8", "9", "J", "Q"], ["10", "9", "J", "K", "Q"], ["10", "A", "J", "K", "Q"]);
+		debugger;
+
+		possibleStraights = ["23456", "34567", "45678", "56789", "106789", "10789J", "1089JQ", "109JKQ", "10AJKQ"];
 
 		x.sort();
-		if (possibleStraights.includes(x)) {
+
+		var tempStr = "";
+
+		x.forEach(function(i){
+			tempStr = tempStr.concat(i);
+		});
+
+		if (possibleStraights.includes(tempStr)) {
 			return true;
 		} else {
 			return false;
@@ -150,3 +165,5 @@
 
 </script>
 
+</html>
+</body>
